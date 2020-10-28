@@ -45,6 +45,6 @@ class MyApp extends StatelessWidget {
 
 ### Screenshot
 #### Page1
-[![IAMNGONI](https://storage.googleapis.com/file-in.appspot.com/files/Pqb4OH8A1z.png =250x)](https://github.com/iamngoni)
+[![IAMNGONI](https://storage.googleapis.com/file-in.appspot.com/files/Pqb4OH8A1z.png)](https://github.com/iamngoni)
 #### Page 2
-[![IAMNGONI](https://storage.googleapis.com/file-in.appspot.com/files/yBC2kuJI_h.png =250x)](https://github.com/iamngoni)
+[![IAMNGONI](https://storage.googleapis.com/file-in.appspot.com/files/yBC2kuJI_h.png)](https://github.com/iamngoni)

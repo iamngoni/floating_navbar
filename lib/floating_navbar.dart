@@ -9,12 +9,12 @@ class FloatingNavBar extends StatefulWidget {
   List<Icon> icons;
   Color color;
 
-  FloatingNavBar({
-    Key key,
-    this.index = 0,
-    @required this.pages,
-    @required this.color,
-  });
+  FloatingNavBar(
+      {Key key,
+      this.index = 0,
+      @required this.pages,
+      @required this.color,
+      @required this.icons});
 
   @override
   _FloatingNavBarState createState() => _FloatingNavBarState();

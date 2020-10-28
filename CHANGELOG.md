@@ -1,3 +1,5 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0]
+### Date : 28-10-2020
 
-* TODO: Describe initial release.
+* Initial release of floating_navbar
+* Simple working alternative to the default flutter bottom navbar

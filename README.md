@@ -1,14 +1,50 @@
 # floating_navbar
 
-A new Flutter package project.
+This package allows developers to add a simpler custom navigation bar that floats at the bottom to their flutter applications.
 
-## Getting Started
+> Developed by Ngonidzashe Mangudya
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Usage
+### Add dependency
+> floating_navbar: ^1.0.0
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+### Import package
+```dart
+  import 'package:floating_navbar/floating_navbar.dart';
+```
+
+### Use in code as follows
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: FloatingNavBar(
+        color: Colors.purple,
+        pages: <Widget>[HomePage(), MyPage()],
+        icons: [
+          Icon(
+            Icons.home,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.account_circle,
+            color: Colors.white,
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+### Screenshot
+#### Page1
+[![IAMNGONI](https://storage.googleapis.com/file-in.appspot.com/files/Pqb4OH8A1z.png)](https://github.com/iamngoni)
+#### Page 2
+[![IAMNGONI](https://storage.googleapis.com/file-in.appspot.com/files/yBC2kuJI_h.png)](https://github.com/iamngoni)

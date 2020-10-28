@@ -82,8 +82,8 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
     );
   }
 
-  List _widgetsBuilder(List<Icon> icons) {
-    List _floatingNavBarItems = [];
+  List<Widget> _widgetsBuilder(List<Icon> icons) {
+    List<Widget> _floatingNavBarItems = [];
     for (int i = 0; i < icons.length; i++) {
       Widget item = this._floatingNavBarItem(icons[i], i);
       _floatingNavBarItems.add(item);

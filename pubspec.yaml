@@ -1,8 +1,7 @@
 name: floating_navbar
 description: A new Flutter package project.
 version: 1.0.0
-author: Ngonidzashe Mangudya
-homepage: www.iamngoni.co.zw/floating_navbar
+homepage: https://www.iamngoni.co.zw/floating_navbar
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

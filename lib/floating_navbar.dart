@@ -44,7 +44,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                   width: MediaQuery.of(context).size.width,
                   child: Card(
                     elevation: 15.0,
-                    color: Color(0xFF6B00F2),
+                    color: widget.color,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),

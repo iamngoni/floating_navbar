@@ -6,7 +6,9 @@ This package allows developers to add a simpler custom navigation bar that float
 
 ## Usage
 ### Add dependency
-> floating_navbar: ^1.0.0
+```yaml
+  floating_navbar: ^1.0.0
+```
 
 ### Import package
 ```dart

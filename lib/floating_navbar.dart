@@ -11,13 +11,15 @@ class FloatingNavBar extends StatefulWidget {
   List<Widget> pages;
   List<Icon> icons;
   Color color;
-
-  FloatingNavBar(
-      {Key key,
-      this.index = 0,
-      @required this.pages,
-      @required this.color,
-      @required this.icons});
+  Color iconColor;
+  FloatingNavBar({
+    Key key,
+    this.index = 0,
+    @required this.pages,
+    @required this.color,
+    @required this.icons,
+    @required this.iconColor,
+  });
 
   @override
   _FloatingNavBarState createState() => _FloatingNavBarState();
@@ -55,7 +57,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: _widgetsBuilder(widget.icons),
+                      children: _widgetsBuilder(widget.icons, widget.iconColor),
                     ),
                   ),
                 ),
@@ -68,7 +70,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   }
 
   /// [_floatingNavBarItem] will build and return a [FloatingNavBar] item widget
-  Widget _floatingNavBarItem(Icon icon, int index) {
+  Widget _floatingNavBarItem(Icon icon, int index, Color color) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -84,7 +86,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           width: 5,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: widget.index == index ? Colors.white : Colors.transparent,
+            color: widget.index == index ? color : Colors.transparent,
           ),
         ),
       ],
@@ -92,10 +94,10 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   }
 
   /// [_widgetsBuilder] adds widgets from [_floatingNavBarItem] into a List<Widget> and returns the list
-  List<Widget> _widgetsBuilder(List<Icon> icons) {
+  List<Widget> _widgetsBuilder(List<Icon> icons, Color color) {
     List<Widget> _floatingNavBarItems = [];
     for (int i = 0; i < icons.length; i++) {
-      Widget item = this._floatingNavBarItem(icons[i], i);
+      Widget item = this._floatingNavBarItem(icons[i], i, color);
       _floatingNavBarItems.add(item);
     }
     return _floatingNavBarItems;

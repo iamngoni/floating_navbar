@@ -77,7 +77,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           child: icon,
         ),
         SizedBox(
-          height: 6,
+          height: 5,
         ),
         Container(
           height: 5,

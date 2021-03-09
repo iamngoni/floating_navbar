@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class FloatingNavBar extends StatefulWidget {
   /// FloatingNavBar
-  /// 
+  ///
   /// [FloatingNavbar] is a simple navigation bar that floats on top of pages at the bottom
   int index;
   List<Widget> pages;
@@ -25,6 +25,7 @@ class FloatingNavBar extends StatefulWidget {
 
 class _FloatingNavBarState extends State<FloatingNavBar> {
   @override
+
   /// Returns a scaffold widget that will contain the pages and the navigation bar
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +75,9 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
         GestureDetector(
           onTap: () => _changePage(index),
           child: icon,
+        ),
+        SizedBox(
+          height: 5,
         ),
         Container(
           height: 5,

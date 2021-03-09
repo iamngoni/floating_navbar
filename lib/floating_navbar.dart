@@ -76,17 +76,6 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           onTap: () => _changePage(index),
           child: icon,
         ),
-        SizedBox(
-          height: 5,
-        ),
-        Container(
-          height: 5,
-          width: 5,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: widget.index == index ? Colors.white : Colors.transparent,
-          ),
-        ),
       ],
     );
   }

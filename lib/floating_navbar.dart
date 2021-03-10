@@ -44,7 +44,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   vertical: 10.0,
-                  horizontal: 15.0,
+                  horizontal: 25.0,
                 ),
                 child: Container(
                   height: 70,

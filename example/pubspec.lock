@@ -62,10 +62,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c43aa6834c86b49cd2124223da18496f78e6b7a0
-      url: "git://github.com/iamngoni/floating_navbar.git"
+      resolved-ref: "2b8d443552397de8bb2feb7faa7b020e8d837527"
+      url: "git://github.com/xanf-code/floating_navbar.git"
     source: git
-    version: "0.0.1"
+    version: "1.0.0"
   flutter:
     dependency: "direct main"
     description: flutter

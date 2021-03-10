@@ -13,7 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   floating_navbar:
     git:
-      url: "git://github.com/iamngoni/floating_navbar.git"
+      url: "git://github.com/xanf-code/floating_navbar.git"
 
 
 dev_dependencies:

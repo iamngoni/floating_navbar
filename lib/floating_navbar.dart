@@ -15,10 +15,14 @@ class FloatingNavBar extends StatefulWidget {
   Color iconColor;
   double horizontalPadding;
   bool hapticFeedback;
+  double borderRadius;
+  double cardWidth;
 
   FloatingNavBar({
     Key key,
     this.index = 0,
+    this.borderRadius,
+    this.cardWidth,
     @required this.horizontalPadding,
     @required this.pages,
     @required this.color,
@@ -54,12 +58,13 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                 ),
                 child: Container(
                   height: 70,
-                  width: MediaQuery.of(context).size.width,
+                  width: widget.cardWidth ?? MediaQuery.of(context).size.width,
                   child: Card(
                     elevation: 15.0,
                     color: widget.color,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius:
+                          BorderRadius.circular(widget.borderRadius ?? 15.0),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

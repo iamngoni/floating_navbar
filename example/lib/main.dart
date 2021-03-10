@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
           )
         ],
+        iconColor: Colors.red,
       ),
     );
   }

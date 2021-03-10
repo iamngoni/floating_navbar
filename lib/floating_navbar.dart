@@ -1,6 +1,7 @@
 library floating_navbar;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // ignore: must_be_immutable
 class FloatingNavBar extends StatefulWidget {
@@ -12,13 +13,18 @@ class FloatingNavBar extends StatefulWidget {
   List<Icon> icons;
   Color color;
   Color iconColor;
+  double horizontalPadding;
+  bool hapticFeedback;
+
   FloatingNavBar({
     Key key,
     this.index = 0,
+    @required this.horizontalPadding,
     @required this.pages,
     @required this.color,
     @required this.icons,
     @required this.iconColor,
+    @required this.hapticFeedback,
   });
 
   @override
@@ -42,9 +48,9 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
               right: 0,
               bottom: 20,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   vertical: 10.0,
-                  horizontal: 25.0,
+                  horizontal: widget.horizontalPadding,
                 ),
                 child: Container(
                   height: 70,
@@ -57,7 +63,8 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: _widgetsBuilder(widget.icons, widget.iconColor),
+                      children: _widgetsBuilder(widget.icons, widget.iconColor,
+                          widget.hapticFeedback),
                     ),
                   ),
                 ),
@@ -70,12 +77,18 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   }
 
   /// [_floatingNavBarItem] will build and return a [FloatingNavBar] item widget
-  Widget _floatingNavBarItem(Icon icon, int index, Color color) {
+  Widget _floatingNavBarItem(
+      Icon icon, int index, Color color, bool hapticFeedback) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
-          onTap: () => _changePage(index),
+          onTap: () {
+            if (hapticFeedback == true) {
+              HapticFeedback.mediumImpact();
+            }
+            _changePage(index);
+          },
           child: icon,
         ),
         SizedBox(
@@ -94,10 +107,12 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   }
 
   /// [_widgetsBuilder] adds widgets from [_floatingNavBarItem] into a List<Widget> and returns the list
-  List<Widget> _widgetsBuilder(List<Icon> icons, Color color) {
+  List<Widget> _widgetsBuilder(
+      List<Icon> icons, Color color, bool hapticFeedback) {
     List<Widget> _floatingNavBarItems = [];
     for (int i = 0; i < icons.length; i++) {
-      Widget item = this._floatingNavBarItem(icons[i], i, color);
+      Widget item =
+          this._floatingNavBarItem(icons[i], i, color, hapticFeedback);
       _floatingNavBarItems.add(item);
     }
     return _floatingNavBarItems;

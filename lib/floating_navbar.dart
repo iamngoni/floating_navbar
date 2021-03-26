@@ -95,8 +95,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
             _changePage(index);
           },
           child: Container(
-            height: 50,
-            width: 50,
+            width: 80,
             child: icon,
           ),
         ),

@@ -47,5 +47,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
+> Thanks to [Darshan Aswath](https://github.com/xanf-code)
+
 ### Screenshot
 [![FloatingNavBar](./screenshots/Screenshot_1616742369.png)](https://github.com/iamngoni/floating_navbar)

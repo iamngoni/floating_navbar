@@ -10,7 +10,7 @@ class FloatingNavBar extends StatefulWidget {
   /// [FloatingNavbar] is a simple navigation bar that floats on top of pages at the bottom
   int index;
   List<Widget> pages;
-  List<Icon> icons;
+  List<IconButton> icons;
   Color color;
   Color iconColor;
   double horizontalPadding;

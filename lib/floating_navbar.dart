@@ -83,7 +83,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 
   /// [_floatingNavBarItem] will build and return a [FloatingNavBar] item widget
   Widget _floatingNavBarItem(
-      Icon icon, int index, Color color, bool hapticFeedback) {
+      IconButton icon, int index, Color color, bool hapticFeedback) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -113,7 +113,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 
   /// [_widgetsBuilder] adds widgets from [_floatingNavBarItem] into a List<Widget> and returns the list
   List<Widget> _widgetsBuilder(
-      List<Icon> icons, Color color, bool hapticFeedback) {
+      List<IconButton> icons, Color color, bool hapticFeedback) {
     List<Widget> _floatingNavBarItems = [];
     for (int i = 0; i < icons.length; i++) {
       Widget item =

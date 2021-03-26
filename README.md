@@ -1,13 +1,12 @@
 # floating_navbar
 
-This package allows developers to add a simpler custom navigation bar that floats at the bottom to their flutter applications.
+### Simple customiable floating bottom navigation bar.
 
-> Developed by Ngonidzashe Mangudya
 
 ## Usage
 ### Add dependency
 ```yaml
-  floating_navbar: ^1.0.0
+  floating_navbar: ^1.1.0
 ```
 
 ### Import package
@@ -21,24 +20,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Floating Nav Bar',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FloatingNavBar(
         color: Colors.purple,
-        pages: <Widget>[HomePage(), MyPage()],
-        icons: [
-          Icon(
-            Icons.home,
-            color: Colors.white,
-          ),
-          Icon(
+         pages: <Widget>[HomePage(), MyPage()],
+         icons: [
+           Icon(
+              Icons.home,
+              color: Colors.white,
+           ),
+           Icon(
             Icons.account_circle,
             color: Colors.white,
           )
         ],
+        iconColor: Colors.red,
+        hapticFeedback: true,
+        horizontalPadding: 40,
       ),
     );
   }
@@ -46,7 +48,4 @@ class MyApp extends StatelessWidget {
 ```
 
 ### Screenshot
-#### Page1
-[![IAMNGONI](https://storage.googleapis.com/file-in.appspot.com/files/Pqb4OH8A1z.png)](https://github.com/iamngoni)
-#### Page 2
-[![IAMNGONI](https://storage.googleapis.com/file-in.appspot.com/files/yBC2kuJI_h.png)](https://github.com/iamngoni)
+[![FloatingNavBar](./screenshots/Screenshot_1616742369.png)](https://github.com/iamngoni/floating_navbar)

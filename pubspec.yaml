@@ -1,6 +1,6 @@
 name: floating_navbar
-description: A new Flutter package project.
-version: 1.0.0
+description: Customisable bottom floating  navbar.
+version: 1.1.0
 homepage: https://www.iamngoni.co.zw/floating_navbar
 
 environment:

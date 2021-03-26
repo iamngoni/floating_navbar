@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
           )
         ],
+        iconColor: Colors.red,
+        hapticFeedback: true,
+        horizontalPadding: 40,
       ),
     );
   }

@@ -10,7 +10,7 @@ class FloatingNavBar extends StatefulWidget {
   /// [FloatingNavbar] is a simple navigation bar that floats on top of pages at the bottom
   int index;
   List<Widget> pages;
-  List<Icon> icons;
+  List<Container> icons;
   Color color;
   Color iconColor;
   double horizontalPadding;
@@ -83,7 +83,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 
   /// [_floatingNavBarItem] will build and return a [FloatingNavBar] item widget
   Widget _floatingNavBarItem(
-      Icon icon, int index, Color color, bool hapticFeedback) {
+      Container icon, int index, Color color, bool hapticFeedback) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -100,9 +100,6 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
             child: icon,
           ),
         ),
-        // SizedBox(
-        //   height: 6,
-        // ),
         Container(
           height: 5,
           width: 5,
@@ -117,7 +114,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 
   /// [_widgetsBuilder] adds widgets from [_floatingNavBarItem] into a List<Widget> and returns the list
   List<Widget> _widgetsBuilder(
-      List<Icon> icons, Color color, bool hapticFeedback) {
+      List<Container> icons, Color color, bool hapticFeedback) {
     List<Widget> _floatingNavBarItems = [];
     for (int i = 0; i < icons.length; i++) {
       Widget item =

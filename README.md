@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
       ),
       home: FloatingNavBar(
         color: Colors.purple,
-         pages: <Widget>[HomePage(), MyPage()],
-         icons: [
-           Icon(
-              Icons.home,
-              color: Colors.white,
-           ),
-           Icon(
+        pages: <Widget>[HomePage(), MyPage()],
+        icons: [
+          Icon(
+            Icons.home,
+            color: Colors.white,
+          ),
+          Icon(
             Icons.account_circle,
             color: Colors.white,
           )
@@ -50,4 +50,4 @@ class MyApp extends StatelessWidget {
 > Thanks to [Darshan Aswath](https://github.com/xanf-code)
 
 ### Screenshot
-[![FloatingNavBar](./screenshots/Screenshot_1616742369.png)](https://github.com/iamngoni/floating_navbar)
+<img src="./screenshots/Screenshot_1616742369.png" alt="Floating Nav Bar" width="300"/>

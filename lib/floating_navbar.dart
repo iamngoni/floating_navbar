@@ -18,12 +18,16 @@ class FloatingNavBar extends StatefulWidget {
   bool hapticFeedback;
   double borderRadius;
   double cardWidth;
+  // bool hideOnScroll;
+  // ScrollController scrollController;
 
   FloatingNavBar({
     Key key,
     this.index = 0,
     this.borderRadius,
     this.cardWidth,
+    // this.hideOnScroll = false,
+    // this.scrollController,
     @required this.horizontalPadding,
     @required this.pages,
     @required this.color,
@@ -33,11 +37,27 @@ class FloatingNavBar extends StatefulWidget {
   });
 
   @override
-  _FloatingNavBarState createState() => _FloatingNavBarState();
+  _FloatingNavBarState createState() {
+    // if (this.hideOnScroll && this.scrollController == null) {
+    //   throw Exception('Hide On Scroll Set To True: Missing scroll controller!');
+    // }
+    return _FloatingNavBarState();
+  }
 }
 
 class _FloatingNavBarState extends State<FloatingNavBar> {
   PageController _pageController = PageController();
+
+  // @override
+  // initState() {
+  //   super.initState();
+  //   if (widget.hideOnScroll) {
+  //     widget.scrollController
+  //       ..addListener(() {
+  //         print(widget.scrollController.position);
+  //       });
+  //   }
+  // }
 
   /// Returns a scaffold widget that will contain the pages and the navigation bar
   Widget build(BuildContext context) {
@@ -50,6 +70,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
             PageView(
               controller: _pageController,
               children: widget.pages,
+              onPageChanged: (index) => this._changePage(index),
             ),
             Positioned(
               left: 0,

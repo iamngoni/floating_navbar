@@ -12,3 +12,8 @@
 * Customer horizontal padding
 * Icon color
 * Card width
+
+## [1.1.1]
+### Date: 02-04.2021
+
+* Swipe pages sideways

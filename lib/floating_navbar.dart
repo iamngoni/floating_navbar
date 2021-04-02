@@ -1,6 +1,7 @@
 library floating_navbar;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 // ignore: must_be_immutable
@@ -36,7 +37,7 @@ class FloatingNavBar extends StatefulWidget {
 }
 
 class _FloatingNavBarState extends State<FloatingNavBar> {
-  @override
+  PageController _pageController = PageController();
 
   /// Returns a scaffold widget that will contain the pages and the navigation bar
   Widget build(BuildContext context) {
@@ -46,7 +47,10 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
         width: MediaQuery.of(context).size.width,
         child: Stack(
           children: [
-            widget.pages[widget.index],
+            PageView(
+              controller: _pageController,
+              children: widget.pages,
+            ),
             Positioned(
               left: 0,
               right: 0,
@@ -126,6 +130,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 
   /// [_changePage] changes selected page index so as to change the page being currently viewed by the user
   _changePage(index) {
+    _pageController.jumpToPage(index);
     setState(() {
       widget.index = index;
     });

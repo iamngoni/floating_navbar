@@ -1,5 +1,6 @@
 library floating_navbar;
 
+import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -8,16 +9,17 @@ import 'package:flutter/services.dart';
 class FloatingNavBar extends StatefulWidget {
   /// FloatingNavBar
   ///
-  /// [FloatingNavbar] is a simple navigation bar that floats on top of pages at the bottom
+  /// [FloatingNavbar] is a simple and clean bottom navigation bar
   int index;
-  List<Widget> pages;
-  List<Widget> icons;
+  List<FloatingNavBarItem> items;
   Color color;
-  Color iconColor;
+  Color unselectedIconColor;
+  Color selectedIconColor;
   double horizontalPadding;
   bool hapticFeedback;
   double borderRadius;
   double cardWidth;
+  bool showTitle;
   // bool hideOnScroll;
   // ScrollController scrollController;
 
@@ -28,11 +30,12 @@ class FloatingNavBar extends StatefulWidget {
     this.cardWidth,
     // this.hideOnScroll = false,
     // this.scrollController,
+    this.showTitle = false,
+    this.selectedIconColor = Colors.white,
+    this.unselectedIconColor = Colors.white,
     @required this.horizontalPadding,
-    @required this.pages,
+    @required this.items,
     @required this.color,
-    @required this.icons,
-    @required this.iconColor,
     @required this.hapticFeedback,
   });
 
@@ -69,7 +72,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           children: [
             PageView(
               controller: _pageController,
-              children: widget.pages,
+              children: widget.items.map((item) => item.page).toList(),
               onPageChanged: (index) => this._changePage(index),
             ),
             Positioned(
@@ -93,8 +96,8 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: _widgetsBuilder(widget.icons, widget.iconColor,
-                          widget.hapticFeedback),
+                      children:
+                          _widgetsBuilder(widget.items, widget.hapticFeedback),
                     ),
                   ),
                 ),
@@ -108,7 +111,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 
   /// [_floatingNavBarItem] will build and return a [FloatingNavBar] item widget
   Widget _floatingNavBarItem(
-      Widget icon, int index, Color color, bool hapticFeedback) {
+      FloatingNavBarItem item, int index, bool hapticFeedback) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -122,7 +125,12 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           child: Container(
             padding: EdgeInsets.all(6),
             width: 50,
-            child: icon,
+            child: Icon(
+              item.iconData,
+              color: widget.index == index
+                  ? widget.selectedIconColor
+                  : widget.unselectedIconColor,
+            ),
           ),
         ),
         Container(
@@ -130,7 +138,9 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           width: 5,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: widget.index == index ? color : Colors.transparent,
+            color: widget.index == index
+                ? widget.selectedIconColor
+                : Colors.transparent,
           ),
         ),
       ],
@@ -139,11 +149,10 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 
   /// [_widgetsBuilder] adds widgets from [_floatingNavBarItem] into a List<Widget> and returns the list
   List<Widget> _widgetsBuilder(
-      List<Widget> icons, Color color, bool hapticFeedback) {
+      List<FloatingNavBarItem> items, bool hapticFeedback) {
     List<Widget> _floatingNavBarItems = [];
-    for (int i = 0; i < icons.length; i++) {
-      Widget item =
-          this._floatingNavBarItem(icons[i], i, color, hapticFeedback);
+    for (int i = 0; i < items.length; i++) {
+      Widget item = this._floatingNavBarItem(items[i], i, hapticFeedback);
       _floatingNavBarItems.add(item);
     }
     return _floatingNavBarItems;

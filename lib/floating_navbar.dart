@@ -133,16 +133,31 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
             ),
           ),
         ),
-        Container(
-          height: 5,
-          width: 5,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: widget.index == index
-                ? widget.selectedIconColor
-                : Colors.transparent,
-          ),
-        ),
+        widget.showTitle
+            ? AnimatedContainer(
+                duration: Duration(milliseconds: 1000),
+                child: widget.index == index
+                    ? Text(
+                        item.title,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: widget.index == index
+                              ? widget.selectedIconColor
+                              : Colors.transparent,
+                        ),
+                      )
+                    : SizedBox.shrink(),
+              )
+            : Container(
+                height: 5,
+                width: 5,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: widget.index == index
+                      ? widget.selectedIconColor
+                      : Colors.transparent,
+                ),
+              ),
       ],
     );
   }

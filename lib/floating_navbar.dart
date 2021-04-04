@@ -112,6 +112,9 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   /// [_floatingNavBarItem] will build and return a [FloatingNavBar] item widget
   Widget _floatingNavBarItem(
       FloatingNavBarItem item, int index, bool hapticFeedback) {
+    if (widget.showTitle && (item.title == null || item.title.isEmpty)) {
+      throw Exception('Missing FloatingNavBarItem title');
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

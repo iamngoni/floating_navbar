@@ -9,41 +9,54 @@ import 'package:flutter/services.dart';
 class FloatingNavBar extends StatefulWidget {
   /// FloatingNavBar
   ///
-  /// [FloatingNavbar] is a simple and clean bottom navigation bar
+  /// [FloatingNavbar] Base class for the bottom navigation bar
+
+  /// The current page index
   int index;
+
+  /// The items to be displayed on the navbar
   List<FloatingNavBarItem> items;
+
+  /// The color of the navbar card
   Color color;
+
+  /// The color of unselected page icons
   Color unselectedIconColor;
+
+  /// The color of selected page icons
   Color selectedIconColor;
+
+  /// The horizontal padding between the navbar card and the page
   double horizontalPadding;
+
+  /// Allow haptic feedback on page change
   bool hapticFeedback;
+
+  /// The border radius of the navbar card
   double borderRadius;
-  double cardWidth;
+
+  /// The width of the navbar card
+  double? cardWidth;
+
+  /// Make use of titles/labels instead of the dot indicator
   bool showTitle;
-  // bool hideOnScroll;
-  // ScrollController scrollController;
 
   FloatingNavBar({
-    Key key,
+    Key? key,
     this.index = 0,
-    this.borderRadius,
+    this.borderRadius = 15.0,
     this.cardWidth,
-    // this.hideOnScroll = false,
-    // this.scrollController,
     this.showTitle = false,
     this.selectedIconColor = Colors.white,
     this.unselectedIconColor = Colors.white,
-    @required this.horizontalPadding,
-    @required this.items,
-    @required this.color,
-    @required this.hapticFeedback,
+    required this.horizontalPadding,
+    required this.items,
+    required this.color,
+    required this.hapticFeedback,
   });
 
   @override
   _FloatingNavBarState createState() {
-    // if (this.hideOnScroll && this.scrollController == null) {
-    //   throw Exception('Hide On Scroll Set To True: Missing scroll controller!');
-    // }
     return _FloatingNavBarState();
   }
 }
@@ -51,18 +64,6 @@ class FloatingNavBar extends StatefulWidget {
 class _FloatingNavBarState extends State<FloatingNavBar> {
   PageController _pageController = PageController();
 
-  // @override
-  // initState() {
-  //   super.initState();
-  //   if (widget.hideOnScroll) {
-  //     widget.scrollController
-  //       ..addListener(() {
-  //         print(widget.scrollController.position);
-  //       });
-  //   }
-  // }
-
-  /// Returns a scaffold widget that will contain the pages and the navigation bar
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -91,8 +92,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                     elevation: 15.0,
                     color: widget.color,
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(widget.borderRadius ?? 15.0),
+                      borderRadius: BorderRadius.circular(widget.borderRadius),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -112,14 +112,17 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   /// [_floatingNavBarItem] will build and return a [FloatingNavBar] item widget
   Widget _floatingNavBarItem(
       FloatingNavBarItem item, int index, bool hapticFeedback) {
-    if (widget.showTitle && (item.title == null || item.title.isEmpty)) {
-      throw Exception('Missing FloatingNavBarItem title');
+    // If showTitle is set to true then no [FloatingNavBarItem] can have no title
+    if (widget.showTitle && item.title.isEmpty) {
+      throw Exception(
+          'Show title set to true: Missing FloatingNavBarItem title!');
     }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
           onTap: () {
+            // If haptic feedback is set to true then use mediumImpact on FloatingNavBarItem tap
             if (hapticFeedback == true) {
               HapticFeedback.mediumImpact();
             }

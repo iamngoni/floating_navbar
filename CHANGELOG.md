@@ -18,7 +18,7 @@
 
 * Swipe pages sideways
 
-## [1.2.0]
+## [2.0.0]
 ### Date: 05-04-2021
 
 * FloatingNavBarItem

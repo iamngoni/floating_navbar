@@ -6,7 +6,7 @@
 ## Usage
 ### Add dependency
 ```yaml
-  floating_navbar: ^1.1.1
+  floating_navbar: ^1.2.0
 ```
 
 ### Import package
@@ -20,27 +20,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Floating Nav Bar',
+      title: 'FloatingNavBar',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FloatingNavBar(
-        color: Colors.purple,
-        pages: <Widget>[HomePage(), MyPage()],
-        icons: [
-          Icon(
-            Icons.home,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.account_circle,
-            color: Colors.white,
-          )
+        color: Colors.green,
+        selectedIconColor: Colors.white,
+        unselectedIconColor: Colors.white.withOpacity(0.6),
+        items: [
+          FloatingNavBarItem(iconData: Icons.home_outlined, page: Home(), title: 'Home'),
+          FloatingNavBarItem(iconData: Icons.local_hospital_outlined, page: Doctors(), title: 'Doctors'),
+          FloatingNavBarItem(iconData: Icons.alarm, page: Reminders(), title: 'Reminders'),
+          FloatingNavBarItem(iconData: Icons.pending_actions_outlined, page: Records(), title: 'Records'),
         ],
-        iconColor: Colors.red,
+        horizontalPadding: 10.0,
         hapticFeedback: true,
-        horizontalPadding: 40,
+        showTitle: true,
       ),
     );
   }

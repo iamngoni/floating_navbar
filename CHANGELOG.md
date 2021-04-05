@@ -17,3 +17,11 @@
 ### Date: 02-04.2021
 
 * Swipe pages sideways
+
+## [1.2.0]
+### Date: 05-04-2021
+
+* FloatingNavBarItem
+* showTitle
+* selectedIconColor
+* unselectedIconColor

@@ -6,7 +6,7 @@
 ## Usage
 ### Add dependency
 ```yaml
-  floating_navbar: ^2.0.0
+  floating_navbar: ^2.0.1
 ```
 
 ### Import package

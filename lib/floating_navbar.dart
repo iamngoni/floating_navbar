@@ -53,7 +53,8 @@ class FloatingNavBar extends StatefulWidget {
     required this.items,
     required this.color,
     required this.hapticFeedback,
-  });
+  })   : assert(items.length > 1),
+        assert(items.length <= 5);
 
   @override
   _FloatingNavBarState createState() {

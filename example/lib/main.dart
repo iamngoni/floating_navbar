@@ -1,4 +1,5 @@
 import 'package:floating_navbar/floating_navbar.dart';
+import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,19 +17,20 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FloatingNavBar(
-        color: Colors.purple,
-        pages: <Widget>[HomePage(), MyPage()],
-        icons: [
-          Icon(
-            Icons.home,
-            color: Colors.white,
+        color: Colors.green,
+        items: [
+          FloatingNavBarItem(
+            iconData: Icons.home,
+            title: 'Home',
+            page: HomePage(),
           ),
-          Icon(
-            Icons.account_circle,
-            color: Colors.white,
+          FloatingNavBarItem(
+            iconData: Icons.account_circle,
+            title: 'Account',
+            page: MyPage(),
           )
         ],
-        iconColor: Colors.red,
+        selectedIconColor: Colors.white,
         hapticFeedback: true,
         horizontalPadding: 40,
       ),

@@ -1,6 +1,6 @@
 name: floating_navbar
 description: Customisable, clean looking bottom floating  navbar. FloatingNavBar comes with multiple customization options - colors, page indicators, etc. This can be used as an alternative to the default BottomNavigationBar
-version: 2.0.1
+version: 2.0.1+1
 homepage: https://www.iamngoni.co.zw/floating_navbar
 
 environment:

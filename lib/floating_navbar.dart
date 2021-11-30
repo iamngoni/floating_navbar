@@ -132,7 +132,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           child: Container(
             padding: EdgeInsets.all(6),
             width: 50,
-            child: Icon(
+            child: item.useImageIcon ? item.icon : Icon(
               item.iconData,
               color: widget.index == index
                   ? widget.selectedIconColor

@@ -6,7 +6,7 @@
 ## Usage
 ### Add dependency
 ```yaml
-  floating_navbar: ^2.0.1
+  floating_navbar: ^2.0.2
 ```
 
 ### Import package
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FloatingNavBar(
+        resizeToAvoidBottomInset: false,
         color: Colors.green,
         selectedIconColor: Colors.white,
         unselectedIconColor: Colors.white.withOpacity(0.6),

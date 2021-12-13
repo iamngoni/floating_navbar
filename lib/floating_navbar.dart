@@ -41,6 +41,8 @@ class FloatingNavBar extends StatefulWidget {
   /// Make use of titles/labels instead of the dot indicator
   bool showTitle;
 
+  bool resizeToAvoidBottomInset;
+
   FloatingNavBar({
     Key? key,
     this.index = 0,
@@ -49,11 +51,12 @@ class FloatingNavBar extends StatefulWidget {
     this.showTitle = false,
     this.selectedIconColor = Colors.white,
     this.unselectedIconColor = Colors.white,
+    this.resizeToAvoidBottomInset = false,
     required this.horizontalPadding,
     required this.items,
     required this.color,
     required this.hapticFeedback,
-  })   : assert(items.length > 1),
+  })  : assert(items.length > 1),
         assert(items.length <= 5);
 
   @override
@@ -67,6 +70,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -132,12 +136,14 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
           child: Container(
             padding: EdgeInsets.all(6),
             width: 50,
-            child: item.useImageIcon ? item.icon : Icon(
-              item.iconData,
-              color: widget.index == index
-                  ? widget.selectedIconColor
-                  : widget.unselectedIconColor,
-            ),
+            child: item.useImageIcon
+                ? item.icon
+                : Icon(
+                    item.iconData,
+                    color: widget.index == index
+                        ? widget.selectedIconColor
+                        : widget.unselectedIconColor,
+                  ),
           ),
         ),
         widget.showTitle

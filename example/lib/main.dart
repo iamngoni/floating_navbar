@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FloatingNavBar(
+        resizeToAvoidBottomInset: false,
         color: Colors.green,
         items: [
           FloatingNavBarItem(
@@ -47,14 +48,25 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
-        child: Text(
-          "iamngoni made it👏",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "iamngoni made it👏",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
           ),
-        ),
+          SizedBox(
+            height: 20,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Fixing insets issue",
+            ),
+          ),
+        ],
       ),
     );
   }

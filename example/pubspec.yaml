@@ -12,8 +12,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.0
   floating_navbar:
-    git:
-      url: "git://github.com/iamngoni/floating_navbar.git"
+    path: ../
+#    git:
+#      url: "git://github.com/iamngoni/floating_navbar.git"
 
 
 dev_dependencies:

@@ -1,6 +1,6 @@
 # floating_navbar
 
-### Simple customiable floating bottom navigation bar.
+### Simple customisable floating bottom navigation bar.
 
 
 ## Usage

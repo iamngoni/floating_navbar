@@ -41,6 +41,8 @@ class FloatingNavBar extends StatefulWidget {
 
   bool resizeToAvoidBottomInset;
 
+  ScrollPhysics? scrollPhysics;
+
   FloatingNavBar({
     Key? key,
     this.index = 0,
@@ -53,7 +55,8 @@ class FloatingNavBar extends StatefulWidget {
     required this.horizontalPadding,
     required this.items,
     required this.color,
-    required this.hapticFeedback,
+    this.hapticFeedback = true,
+    this.scrollPhysics,
   })  : assert(items.length > 1),
         assert(items.length <= 5);
 
@@ -75,6 +78,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
         child: Stack(
           children: [
             PageView(
+              physics: widget.scrollPhysics,
               controller: _pageController,
               children: widget.items.map((item) => item.page).toList(),
               onPageChanged: (index) => this._changePage(index),

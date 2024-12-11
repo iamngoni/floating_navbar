@@ -2,8 +2,6 @@ library floating_navbar;
 
 import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 
 // ignore: must_be_immutable
 class FloatingNavBar extends StatefulWidget {
@@ -101,8 +99,11 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:
-                          _widgetsBuilder(widget.items, widget.hapticFeedback),
+                      children: widget.items.map((item) {
+                        int index = widget.items.indexOf(item);
+                        return _floatingNavBarItem(
+                            item, index, widget.hapticFeedback);
+                      }).toList(),
                     ),
                   ),
                 ),
@@ -122,68 +123,61 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
       throw Exception(
           'Show title set to true: Missing FloatingNavBarItem title!');
     }
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        GestureDetector(
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          enableFeedback: hapticFeedback,
           onTap: () {
-            // If haptic feedback is set to true then use mediumImpact on FloatingNavBarItem tap
-            if (hapticFeedback == true) {
-              HapticFeedback.mediumImpact();
-            }
             _changePage(index);
           },
-          child: Container(
-            padding: EdgeInsets.all(6),
-            width: 50,
-            child: item.useImageIcon
-                ? item.icon
-                : Icon(
-                    item.iconData,
-                    color: widget.index == index
-                        ? widget.selectedIconColor
-                        : widget.unselectedIconColor,
-                  ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.all(6),
+                width: 50,
+                child: item.useImageIcon
+                    ? item.icon
+                    : Icon(
+                        item.iconData,
+                        color: widget.index == index
+                            ? widget.selectedIconColor
+                            : widget.unselectedIconColor,
+                      ),
+              ),
+              widget.showTitle
+                  ? AnimatedContainer(
+                      duration: Duration(milliseconds: 1000),
+                      child: widget.index == index
+                          ? Text(
+                              item.title,
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: widget.index == index
+                                    ? widget.selectedIconColor
+                                    : Colors.transparent,
+                              ),
+                            )
+                          : SizedBox.shrink(),
+                    )
+                  : AnimatedContainer(
+                      duration: Duration(milliseconds: 500),
+                      height: 5,
+                      width: 5,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: widget.index == index
+                            ? widget.selectedIconColor
+                            : Colors.transparent,
+                      ),
+                    ),
+            ],
           ),
         ),
-        widget.showTitle
-            ? AnimatedContainer(
-                duration: Duration(milliseconds: 1000),
-                child: widget.index == index
-                    ? Text(
-                        item.title,
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: widget.index == index
-                              ? widget.selectedIconColor
-                              : Colors.transparent,
-                        ),
-                      )
-                    : SizedBox.shrink(),
-              )
-            : Container(
-                height: 5,
-                width: 5,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: widget.index == index
-                      ? widget.selectedIconColor
-                      : Colors.transparent,
-                ),
-              ),
-      ],
+      ),
     );
-  }
-
-  /// [_widgetsBuilder] adds widgets from [_floatingNavBarItem] into a List<Widget> and returns the list
-  List<Widget> _widgetsBuilder(
-      List<FloatingNavBarItem> items, bool hapticFeedback) {
-    List<Widget> _floatingNavBarItems = [];
-    for (int i = 0; i < items.length; i++) {
-      Widget item = this._floatingNavBarItem(items[i], i, hapticFeedback);
-      _floatingNavBarItems.add(item);
-    }
-    return _floatingNavBarItems;
   }
 
   /// [_changePage] changes selected page index so as to change the page being currently viewed by the user

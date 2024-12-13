@@ -10,7 +10,7 @@ class FloatingNavBar extends StatefulWidget {
   /// [FloatingNavbar] Base class for the bottom navigation bar
 
   /// The current page index
-  int index;
+  int initialIndex;
 
   /// The items to be displayed on the navbar
   List<FloatingNavBarItem> items;
@@ -43,9 +43,11 @@ class FloatingNavBar extends StatefulWidget {
 
   ScrollPhysics? scrollPhysics;
 
+  ValueSetter<int>? onPageChanged;
+
   FloatingNavBar({
     Key? key,
-    this.index = 0,
+    this.initialIndex = 0,
     this.borderRadius = 15.0,
     this.cardWidth,
     this.showTitle = false,
@@ -56,6 +58,7 @@ class FloatingNavBar extends StatefulWidget {
     required this.items,
     required this.color,
     this.hapticFeedback = true,
+    this.onPageChanged,
     this.scrollPhysics,
   })  : assert(items.length > 1),
         assert(items.length <= 5);
@@ -67,7 +70,15 @@ class FloatingNavBar extends StatefulWidget {
 }
 
 class _FloatingNavBarState extends State<FloatingNavBar> {
-  PageController _pageController = PageController();
+  late int currentIndex;
+  late PageController _pageController;
+
+  @override
+  initState() {
+    super.initState();
+    currentIndex = widget.initialIndex;
+    _pageController = PageController(initialPage: widget.initialIndex);
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,7 +157,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                     ? item.icon
                     : Icon(
                         item.iconData,
-                        color: widget.index == index
+                        color: currentIndex == index
                             ? widget.selectedIconColor
                             : widget.unselectedIconColor,
                       ),
@@ -154,12 +165,12 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
               widget.showTitle
                   ? AnimatedContainer(
                       duration: Duration(milliseconds: 1000),
-                      child: widget.index == index
+                      child: currentIndex == index
                           ? Text(
                               item.title,
                               style: TextStyle(
                                 fontSize: 15,
-                                color: widget.index == index
+                                color: currentIndex == index
                                     ? widget.selectedIconColor
                                     : Colors.transparent,
                               ),
@@ -172,7 +183,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
                       width: 5,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: widget.index == index
+                        color: currentIndex == index
                             ? widget.selectedIconColor
                             : Colors.transparent,
                       ),
@@ -187,8 +198,10 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   /// [_changePage] changes selected page index so as to change the page being currently viewed by the user
   _changePage(index) {
     _pageController.jumpToPage(index);
-    setState(() {
-      widget.index = index;
-    });
+    currentIndex = index;
+    widget.onPageChanged?.call(index);
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

@@ -1,11 +1,11 @@
 name: floating_navbar
 description: Customisable, clean looking bottom floating  navbar. FloatingNavBar comes with multiple customization options - colors, page indicators, etc. This can be used as an alternative to the default BottomNavigationBar
-version: 2.0.2
+version: 3.0.0
 homepage: https://www.iamngoni.co.zw/floating_navbar
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
-  flutter: '>=3.19.0'
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
 
 dependencies:
   flutter:
@@ -14,5 +14,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:

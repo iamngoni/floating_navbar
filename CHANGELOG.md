@@ -1,3 +1,10 @@
+## [3.0.0]
+
+* optional scroll physics
+* bug fixes
+* update UI tap
+* update flutter version constraints
+
 ## [2.0.2]
 
 * ResizeToAvoidBottomInset

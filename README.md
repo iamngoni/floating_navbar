@@ -6,7 +6,7 @@
 ## Usage
 ### Add dependency
 ```yaml
-  floating_navbar: ^2.0.2
+  floating_navbar: ^3.0.0
 ```
 
 ### Import package
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-> Thanks to [Darshan Aswath](https://github.com/xanf-code)
+> Thanks to [Darshan Aswath](https://github.com/xanf-code), [Kuda K](https://github.com/kudak3) and [Altay](https://github.com/altaysakarya)
 
 ### Screenshot
 [![Floating Navbar](https://raw.githubusercontent.com/iamngoni/floating_navbar/master/screenshots/Screenshot_1617377389.png)](https://www.iamngoni.co.zw)
